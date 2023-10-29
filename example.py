@@ -1,19 +1,19 @@
 import tkinter as tk
 import tkinter.messagebox
 from tkinter.constants import SUNKEN
-
+ 
 window = tk.Tk()
 window.title('Simple Calculator')
 frame = tk.Frame(master=window, bg="skyblue", padx=10)
 frame.pack()
 entry = tk.Entry(master=frame, relief=SUNKEN, borderwidth=3, width=50)
 entry.grid(row=0, column=0, columnspan=3, ipady=2, pady=2)
-
-
+ 
+ 
 def myclick(number):
     entry.insert(tk.END, number)
-
-
+ 
+ 
 def equal():
     try:
         y = str(eval(entry.get()))
@@ -21,18 +21,16 @@ def equal():
         entry.insert(0, y)
     except:
         tkinter.messagebox.showinfo("Error", "Syntax Error")
-
-
+ 
+ 
 def clear():
     entry.delete(0, tk.END)
-
 
 def backspace():
     current_text = entry.get()
     updated_text = current_text[:-1]
     entry.delete(0, tk.END)
     entry.insert(0, updated_text)
-
 
 button_1 = tk.Button(master=frame, text='1', padx=15,
                      pady=5, width=10, command=lambda: myclick(1))
@@ -61,15 +59,10 @@ button_8.grid(row=3, column=1, pady=2)
 button_9 = tk.Button(master=frame, text='9', padx=15,
                      pady=5, width=10, command=lambda: myclick(9))
 button_9.grid(row=3, column=2, pady=2)
-button_0 = tk.Button(master=frame, text='0', padx=15,
-                     pady=5, width=10, command=lambda: myclick(0))
+button_0 = tk.Button(
+    master=frame, text='0', padx=15,pady=5, width=10, command=lambda: myclick(0))
 button_0.grid(row=4, column=0, pady=2)
  
-button_backspace = tk.Button(
-    master=frame, text="Backspace", padx=15, pady=5, width=10, command=backspace)
-button_backspace.grid(row=1, column=3, pady=2)  
-
-
 button_add = tk.Button(
     master=frame, text="+", padx=15,pady=5, width=10, command=lambda: myclick('+'))
 button_add.grid(row=4, column=1, pady=2)
@@ -89,12 +82,17 @@ button_div = tk.Button(
     master=frame, text="/", padx=15,pady=5, width=10, command=lambda: myclick('/'))
 button_div.grid(row=5, column=2, pady=2)
 
+button_clear = tk.Button(
+    master=frame, text="clear", padx=15,pady=5, width=10, command=clear)
+button_clear.grid(row=6, column=0, pady=2)
+
 button_equal = tk.Button(
     master=frame, text="=",padx=15, pady=5, width=10, command=equal)
-button_equal.grid(row=2, column=3,rowspan=3, pady=2)
+button_equal.grid(row=6, column=1, pady=2)
 
-button_clear = tk.Button(
-    master=frame, text="Clear", padx=15, pady=5, width=10, command=clear)
-button_clear.grid(row=5, column=3, pady=2)  
-
+button_backspace = tk.Button(
+    master=frame, text="del",padx=15, pady=5, width=10, command=backspace)
+button_backspace.grid(row=6, column=2, pady=2)
+ 
+ 
 window.mainloop()
